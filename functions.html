@@ -1,0 +1,70 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Working with functions</h1>
+        <script>
+            function F1() {
+                console.log("Function F1() called.");
+            }
+            //Invoke
+            F1(); 
+            function ReturnValues() { 
+                console.log("Function ReturnValues() called.");
+                return "Hello World 123"; 
+            }
+            console.log("Return Value: ", ReturnValues());
+            function WithArgs(arg1, arg2) { 
+                if(typeof(arg1) !== 'string') {
+                    console.log(`${arg1} is not a string.`);
+                }
+                console.log(`Function WithArgs( ${arg1}, ${arg2}) called.`);
+            }
+            WithArgs(100, "Bengaluru"); 
+            WithArgs("ABB", "Limited");
+            WithArgs(); 
+            WithArgs("S1")
+            WithArgs(1,2,3,4,5)
+            //arguments array 
+            function ArgumentsList(arg1) {
+                console.log(`${arguments.length} Arguments. They are : `)
+                for(let arg of arguments) { 
+                    console.log(arg)
+                }
+            }
+            ArgumentsList(); 
+            ArgumentsList(1); 
+            ArgumentsList(10,20); 
+            ArgumentsList(11,22,33,44,55,66,77,88); 
+
+            var fn = function(arg1) { 
+                console.log(`fn(${arg1}) called.`); 
+            }
+            fn("Hello");
+            console.log(fn)
+
+            //ES6 - Arrow Functions 
+            var a1 = () => console.log("Arrow Function"); 
+            a1();
+            var a2 = () => { 
+                console.log("Arrow Function a2"); 
+                console.log("Arrow Function a2"); 
+            }
+            a2();
+            var a3 = p=>console.log("Arrow with argument: ", p) //use (p)=>{}
+            a3("One");
+            var a3 = (p1,p2)=>console.log("Arrow with arguments: ", p1, p2) 
+            //use (p1, p2)=>{}
+            a3("One", "Two");
+            
+            //Limitations of Arrow functions
+            //1. dont have bindings to the "this", "arguments"
+            //2. ideally should not be used as methods 
+            //3. cannot be used as constructors 
+            //4. cannot be used as iterator/generator functions 
+
+
+        </script>
+
+
+    </body>
+</html>

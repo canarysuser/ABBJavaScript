@@ -1,0 +1,7 @@
+[
+    { "productId":1, "productName": "Markers", "price":123.45},
+    { "productId":2, "productName": "Box File", "price":45.67},
+    { "productId":3, "productName": "Permanent Markers", "price":67.89},
+    { "productId":4, "productName": "White Boards", "price":890.12},
+    { "productId":5, "productName": "Pencils", "price":12.345}
+]

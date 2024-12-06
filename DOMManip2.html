@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <title>DOM Manipulation</title>
+    <link href="DOMManip2.css" type="text/css" rel="stylesheet" />
+    <!-- <script src="DOMManip2.js"></script> -->
+    <script src="jquery.js"></script>
+</head>
+
+<body>
+    <h1>DOM Manipulation</h1>
+    <hr />
+    <div class="card">
+        <div class="card-header">Product Management</div>
+        <div class="card-body">
+            <h4>Add Product</h4>
+            <form id="form1" novalidate>
+                <div id="errorDiv" class="errorDiv">
+                </div>
+                <input type="text" placeholder="Product Name" id="pname" name="pname" data-required="true"
+                    data-reqmsg="Product Name is required." data-maxlength="25"
+                    data-maxlengthmsg="Product Name should be less than 25 chars" />
+                <input type="text" placeholder="Product Price" id="price" name="price" />
+                <input type="submit" value="Add" />
+            </form>
+            <h4>Product List</h4>
+            <table id="tbl1" border="1">
+                <thead>
+                    <tr>
+                        <th>Sl No</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblData">
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" style="text-align: center; font-size:0.8rem">
+                            Total Items: <span id="totalItems"></span>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <script>
+        //debugger;
+        const productList = [];
+        $(document).ready(function () {
+            $("#errorDiv").fadeOut();
+            //alert("Hello jQuery");
+
+            $("#form1").submit(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                try {
+                    var pname = $("#pname").val();
+                    var reqAttr = $("#pname").attr("data-required");
+                    if (!pname.length) {
+                        if (pname.length < 5)
+                            throw Error("Length is 5 or less chars.")
+                        $("#errorDiv").fadeIn();
+                        $("#pname").addClass("inputError");
+                        $("#errorDiv").html($("#pname").attr("data-reqmsg"));
+                        $("#errorDiv").fadeOut(5000);
+                    }
+
+                    productList.push({
+                        productId: productList.length + 1,
+                        productName: pname,
+                        price: $("#price").val()
+                    });
+                    $("#tblData").empty(); //clear the table data
+                    $.each(productList, (index, value) => {
+                        var row = `<tr><td>${value.productId}</td>`;
+                        row += `<td>${value.productName}</td>`;
+                        row += `<td>${value.price}</td></tr>`;
+                        $("#tblData").append(row);
+                    });
+                } catch (e) {
+                    alert(e);
+                }
+                return false;
+            })
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <script src="jquery.js"></script>
+</head>
+
+<body>
+    <h1>Ajax Operations</h1>
+    <hr />
+    <button id="btn1">Fetch using XHR</button>
+    <button id="btn2">Fetch using Fetch.js</button>
+    <table id="tbl1" border="1">
+        <thead>
+            <tr>
+                <th>Sl No</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="tblData">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" style="text-align: center; font-size:0.8rem">
+                    Total Items: <span id="totalItems"></span>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <script>
+        $(document).ready(function () {
+            $("#btn1").click(xhrFetchOperation);
+            $("#btn2").click(fetchApiOperations);
+        })
+        var columns = [];
+        async function fetchApiOperations(e) { 
+            var response = await fetch('/products.json'); 
+            var responseText = await response.json();
+            var firstObj = responseText[0]; 
+            let ctr=0;
+            for(var prop in firstObj) {
+                //create table header
+                columns[ctr++]=prop;
+            }
+            loadTableData(responseText);
+        }
+
+        function xhrFetchOperation(e) {
+            //create the request object 
+            var request = new XMLHttpRequest();
+            //write a handler for the ReadyStateChange of the XHR Object 
+            let stateChangeHandler = () => {
+                if (request.readyState == 4 && request.status == '200') {
+                    let responseText = request.responseText;
+                    let productList = JSON.parse(responseText);
+                    loadTableData(productList);
+                }
+            }
+            request.open( 'GET', '/products.json'); 
+            request.setRequestHeader("Content-Type", "application/json"); 
+            request.onreadystatechange = stateChangeHandler; 
+            request.send(); 
+            console.log("call sent. Waiting for response.");
+        }
+        function loadTableData(list) {
+            $("#tblData").empty(); //clear the table data
+            $.each(list, (index, value) => {
+                var row = `<tr><td>${value[columns[1]]}</td>`;
+                row += `<td>${value[columns[0]]}</td>`;
+                row += `<td>${value[columns[2]]}</td></tr>`;
+                $("#tblData").append(row);
+            });
+        }
+    </script>
+</body>
+
+</html>

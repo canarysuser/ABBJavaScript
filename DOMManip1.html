@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <title>DOM Manipulation 1</title>
+    <style>
+        .root {
+            background-color: yellow;
+            border: 1px solid red;
+            width: 100%;
+            display: block;
+        }
+
+        .c1 {
+            width: 40%;
+            border: 2px solid green;
+            margin: 2px;
+            float: left;
+        }
+
+        .c2 {
+            width: 50%;
+            border: 2px solid gray;
+            margin: 2px;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DOM Manipulation</h1>
+    <p style="border: 1px solid blue;padding:5px" id="p1">
+
+    </p>
+    <div class="root">
+        <div id="div1" class="c1"></div>
+        <div id="div2" class="c2">Section 2</div>
+    </div>
+    <div style="clear:both;"></div>
+    <script>
+        window.document.getElementById("p1").innerHTML = "<h4>Dynamically loaded content.</h4>";
+        var div1 = document.querySelector("#div1");
+        var tbl = document.createElement("table");
+        var tr = document.createElement("tr");
+        var td1 = document.createElement("td");
+        td1.innerText = "1";
+        tr.appendChild(td1);
+        var td2 = document.createElement("td");
+        td2.innerText = "Name";
+        tr.appendChild(td2);
+        tbl.appendChild(tr);
+        tbl.border = "2";
+        div1.appendChild(tbl);
+    </script>
+    <style>
+        .normal {
+            background-color: white;
+            padding: 10px;
+            border: 1px solid red;
+            margin: 10px;
+        }
+
+        .highlight {
+            background-color: yellow;
+            padding: 10px;
+            border: 1px solid red;
+            margin: 10px;
+        }
+    </style>
+    <button id="btn1" onclick="changeColors()" type="button">Toggle Colors</button>
+    <div class="normal" id="colorDiv1" 
+        onmouseenter="divFocus()" onmouseleave="divBlur()">
+        To toggle, click the button above
+    </div>
+    <script>
+        function divFocus() { 
+            var cd = document.getElementById("colorDiv1");
+            cd.style.fontWeight = "bold";
+            cd.style.padding = "20px";
+        }
+        function divBlur() { 
+            var cd = document.getElementById("colorDiv1");
+            cd.style.fontWeight = "normal";
+            cd.style.padding = "10px";
+        }
+        function changeColors() {
+            // alert("Button clicked.");
+            var cd = document.getElementById("colorDiv1");
+            if (cd.className == "normal")
+                cd.className = "highlight";
+            else
+                cd.className = "normal";
+        }
+
+        window.onload = function() { 
+            alert("Window loaded");
+        }
+        
+    </script>
+
+
+</body>
+
+</html>

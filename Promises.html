@@ -1,0 +1,36 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Promises</h1>
+        <script>
+            
+            function createPromise(status) {
+                let promise=new Promise( function(resolve, reject) {
+                    //some data operations
+                    if(status) 
+                        resolve("Task completed successfully");
+                    else 
+                        reject("Task failed.");
+                })
+                console.log("Promise created.");
+                return promise;
+            }
+            var p = createPromise(true); 
+            p
+            .then(function (data) { console.log(data);} )
+            .catch((err)=>console.log(err))
+            console.log('completed')
+            
+            async function AsyncFn() {
+                try {
+                    var result = await createPromise(false); 
+                    console.log('Async:', result)
+                } catch (e){
+                    console.log('Async error: ', e)
+                }
+            }
+            AsyncFn(); 
+            console.log("All tasks completed.")
+        </script>
+    </body>
+</html>

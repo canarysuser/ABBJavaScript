@@ -1,0 +1,68 @@
+body {
+    margin:5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 1.15rem;
+} 
+h1 { 
+    background-color: lightskyblue;
+    padding: 5px;
+    text-align: center;
+    border-bottom:1px solid gray ;
+}
+.card { 
+    width: 75%; 
+    margin:auto; 
+    border: 1px solid gray;
+    box-shadow: 5px 10px 16px 1px gray;
+}
+.card div { 
+    margin:0px
+}
+.card-header { 
+    background-color: gold;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+h4 { 
+    margin:4px;
+}
+.card-body { 
+    padding:10px;
+    min-height: 250px;
+}
+#form1 { 
+    border: 1px solid gray;
+    padding: 10px;
+}
+table { 
+    width: 100%;
+}
+table > thead {
+    background-color: rgba(25, 25, 25, 15);
+    color:white;
+}
+input[type='text'] {
+    padding: 5px;
+    background-color: lemonchiffon;
+}
+input[type='submit'], button {
+    background-color: black;
+    padding: 5px 15px ;
+    color: white;
+    border:1px solid whitesmoke;
+    font-weight: bold;
+}
+input[type='submit']:hover {
+    background-color: gold;
+    padding: 5px 15px ;
+    color: black;
+    border:1px solid black;
+}
+.inputError { 
+    border: 1px solid red;
+}
+.errorDiv { 
+    color: red;
+}

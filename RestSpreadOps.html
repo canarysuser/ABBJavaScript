@@ -1,0 +1,63 @@
+<html>
+    <head></head>
+    <body>
+        <script src="NumberReducers.js"></script>
+        <script>
+            console.log('Number Reducers: ')
+            console.log(numReducer.filteredArray)
+            console.log(numReducer.mappedArray);
+            console.log(numReducer.sum)
+        </script>
+        <h1>Rest and SPread Operators</h1>
+        <script>
+            let arr = ['pens', 'markers', 'pencils']; 
+            console.log(arr);
+            let a = arr[0]; 
+            let b = arr[1]; 
+            let c = arr[2]; 
+            console.log('a:',a,' b:',b,' c:',c); 
+            //SPREAD OPERATOR 
+            let [p1,p2,p3] = [...arr];
+            console.log('p1:', p1, ' p2:', p2, " p3:", p3)
+            //REST
+            let [m1, ...m2] = [...arr]; 
+            console.log('m1:', m1, ' m2:', m2)
+        </script>
+        <h1>REST and SPread operators on objects</h1>
+        <script>
+            console.log("REST and SPREAD with objects")
+            let user ={userId:1, userName:"Test", pwd: "password"};
+            console.log(user); 
+            // let {userId, userName, pwd} = {...user}; 
+            // console.log("Extracted", userId, userName, pwd);
+            let newUser = {userName:'New Test', ...user, lastSeen:'yesterday'}; 
+            console.log('New User Object', newUser);
+            let anotherObj = {}; 
+            for(let prop in newUser) {
+                if(prop!="pwd"){
+                    anotherObj[prop]=newUser[prop];
+                }
+            }
+            console.log(anotherObj)
+            //REST and SPREAD operators
+            let {pwd, ...newuserobject} = {...newUser};
+            console.log(newuserobject)
+
+        </script>
+        <script>
+            let numbers = [1,2,3,4,5,6,7,8,9,10];
+            function filterFn(value, index) { 
+                return value%2==0; 
+            } 
+            let filter = numbers.filter(filterFn); 
+            console.log('Numbers', numbers); 
+            console.log('Even Numbers', filter); 
+            let map = filter.map(function(value, index) {
+                return value + 10;
+            });
+            console.log('Mapped: ', map); 
+            let sum = map.reduce((prevVal, currVal) => prevVal+currVal);
+            console.log('Sum: ', sum);
+        </script>
+    </body>
+</html>
